@@ -1,0 +1,38 @@
+Create GPT partition table
+=====================================================
+
+Sorry but you *HAVE* to go with rescue disk.
+
+```
+parted /dev/sdb
+(parted) mklabel gpt
+(parted) mkpart primary 0GB 100%
+(parted) print
+(parted) q
+
+parted /dev/sda
+(parted) mklabel gpt
+(parted) mkpart primary 0GB 100%
+(parted) print
+(parted) q
+```
+
+Configure LVM
+=============
+
+```
+root@rescue ~ # pvcreate /dev/sda1
+  Writing physical volume data to disk "/dev/sda1"
+  Physical volume "/dev/sda1" successfully created
+root@rescue ~ # pvcreate /dev/sdb1
+  Writing physical volume data to disk "/dev/sdb1"
+  Physical volume "/dev/sdb1" successfully created
+root@rescue ~ # pvs
+  PV         VG   Fmt  Attr PSize PFree
+  /dev/sda1       lvm2 a--  2.73t 2.73t
+  /dev/sdb1       lvm2 a--  2.73t 2.73t
+root@rescue ~ # vgcreate storage /dev/sda1 /dev/sdb1
+  Volume group "storage" successfully created
+root@rescue ~ # vgs
+  VG      #PV #LV #SN Attr   VSize VFree
+  storage   2   0   0 wz--n- 5.46t 5.46t
