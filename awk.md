@@ -1,3 +1,6 @@
+
+Compara dois arquivos 
+
 ```awk '{ getline x<"file2" } $0!=x{ print x}' file1```
 
 ```getline x<"file2"```       passa a linha inteira do arquivo2 e mantém a variável x
