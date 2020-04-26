@@ -1,6 +1,18 @@
+##TCP FLAGS##
 
+Unskilled Attackers Pester Real Security Folks
+==============================================
+                     TCPDUMP FLAGS
+Unskilled =  URG  =  (Not Displayed in Flag Field, Displayed elsewhere) 
+Attackers =  ACK  =  (Not Displayed in Flag Field, Displayed elsewhere)
+Pester    =  PSH  =  [P] (Push Data)
+Real      =  RST  =  [R] (Reset Connection)
+Security  =  SYN  =  [S] (Start Connection)
+Folks     =  FIN  =  [F] (Finish Connection)
+          SYN-ACK =  [S.] (SynAcK Packet)
+                     [.] (No Flag Set)
 
-# 
+# Reset de conexões
 tcpdump -i ens160 'tcp[13] & 4 != 0'
-
-tcpdump -n -v 'tcp [tcpflags] & (tcp-rst)! = 0'
+# Reset de conexões detalhado
+tcpdump -i ens160 -nnvvS 'tcp[13] & 4 != 0'
