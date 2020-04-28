@@ -16,3 +16,14 @@ Folks     =  FIN  =  [F] (Finish Connection)
 tcpdump -i ens160 'tcp[13] & 4 != 0'
 # Reset de conexões detalhado
 tcpdump -i ens160 -nnvvS 'tcp[13] & 4 != 0'
+
+
+
+Wireshark 
+
+Filtro de reset de conexões
+tcp.flags.syn==1 or tcp.flags.reset==1
+
+ou apenas
+
+tcp.flags.reset==1
