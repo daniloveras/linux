@@ -1,4 +1,7 @@
-
+Consultar Volume Group
+vgs
+Consultar Logical Volume
+lvs
 
 
 Rode os seguintes comandos para expandir os espaço no volume físico do sistema operacional fazendo o rescan do SCSI BUS e assim adicionando SCSI Device.
